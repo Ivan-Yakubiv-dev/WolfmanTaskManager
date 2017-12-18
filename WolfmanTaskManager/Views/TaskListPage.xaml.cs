@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WolfmanTaskManager
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Tasks.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class TaskListPage : Page
     {
-        public MainWindow()
+        public TaskListPage()
         {
             InitializeComponent();
         }

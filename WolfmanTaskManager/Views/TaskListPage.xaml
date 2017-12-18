@@ -1,0 +1,147 @@
+﻿<Page x:Class="WolfmanTaskManager.TaskListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:local="clr-namespace:WolfmanTaskManager"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      mc:Ignorable="d" 
+      Title="[Wolfman] Task Manager - To-Do List"
+      d:DesignHeight="500" d:DesignWidth="800">
+
+    <Page.Resources>
+        <!-- // Tabs Styles -->
+        <Style TargetType="StackPanel" x:Key="NavigationPanelStyle">
+            <Setter Property="Grid.Row" Value="0"></Setter>
+            <Setter Property="Grid.ColumnSpan" Value="3"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="MainTitleStyle">
+            <Setter Property="Padding" Value="20 5"></Setter>
+            <Setter Property="Background" Value="#2E0504"></Setter>
+            <Setter Property="Foreground" Value="#D57F7B"></Setter>
+            <Setter Property="FontSize" Value="50"></Setter>
+            <Setter Property="Text" Value="Task List"></Setter>
+        </Style>
+        <!-- Tabs Styles // -->
+        
+        <!-- // "To-Do" column Styles -->
+        <Style TargetType="StackPanel" x:Key="ToDoColumnStyle">
+            <Setter Property="Grid.Row" Value="1"></Setter>
+            <Setter Property="Grid.Column" Value="0"></Setter>
+            <Setter Property="Background" Value="#2E174E"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="ToDoTitleStyle">
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="35"></Setter>
+            <Setter Property="Background" Value="#1B0933"></Setter>
+            <Setter Property="Foreground" Value="#D5CAE6"></Setter>
+            <Setter Property="Text" Value="To-Do"></Setter>
+        </Style>
+        <Style TargetType="ListBox" x:Key="ToDoItemsStyle">
+            <Setter Property="Background" Value="#2E174E"></Setter>
+            <Setter Property="Foreground" Value="#AB89DB"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+        <!-- "To-Do" column Styles // -->
+
+        <!-- // "In Progress" column Styles -->
+        <Style TargetType="StackPanel" x:Key="InProgressColumnStyle">
+            <Setter Property="Grid.Row" Value="1"></Setter>
+            <Setter Property="Grid.Column" Value="1"></Setter>
+            <Setter Property="Background" Value="#674B22"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="InProgressTitleStyle">
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="35"></Setter>
+            <Setter Property="Background" Value="#543811"></Setter>
+            <Setter Property="Foreground" Value="#F5ECC6"></Setter>
+            <Setter Property="Text" Value="In Progress"></Setter>
+        </Style>
+        <Style TargetType="ListBox" x:Key="InProgressItemsStyle">
+            <Setter Property="Background" Value="#674B22"></Setter>
+            <Setter Property="Foreground" Value="#E1CAA7"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+        <!-- "In Progress" column Styles // -->
+
+        <!-- // "Done" column Styles -->
+        <Style TargetType="StackPanel" x:Key="DoneColumnStyle">
+            <Setter Property="Grid.Row" Value="1"></Setter>
+            <Setter Property="Grid.Column" Value="2"></Setter>
+            <Setter Property="Background" Value="#296F2E"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="DoneTitleStyle">
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="35"></Setter>
+            <Setter Property="Background" Value="#125317"></Setter>
+            <Setter Property="Foreground" Value="#CFF1D0"></Setter>
+            <Setter Property="Text" Value="Done"></Setter>
+        </Style>
+        <Style TargetType="ListBox" x:Key="DoneItemsStyle">
+            <Setter Property="Background" Value="#296F2E"></Setter>
+            <Setter Property="Foreground" Value="#B4E3B7"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+        </Style>
+        <!-- "Done" column Styles // -->
+
+        <!-- // "Task" blocks Data -->
+        <x:Array x:Key="ToDoItems" Type="sys:String">
+            <sys:String>Task #1</sys:String>
+            <sys:String>Task #2</sys:String>
+            <sys:String>Task #3</sys:String>
+            <sys:String>Task #4</sys:String>
+        </x:Array>
+        <x:Array x:Key="InProgressItems" Type="sys:String">
+            <sys:String>Task #1</sys:String>
+            <sys:String>Task #2</sys:String>
+        </x:Array>
+        <x:Array x:Key="DoneItems" Type="sys:String">
+            <sys:String>Task #1</sys:String>
+            <sys:String>Task #2</sys:String>
+            <sys:String>Task #3</sys:String>
+        </x:Array>
+        <!-- "Task" blocks Data // -->
+    </Page.Resources>
+
+    <Grid>
+        <!-- // Rows/Columns Configuration -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!-- Rows/Columns Configuration // -->
+
+        <!-- // Main Title -->
+        <StackPanel Style="{StaticResource NavigationPanelStyle}">
+            <TextBlock Name="MainTitle" Style="{StaticResource MainTitleStyle}"></TextBlock>
+        </StackPanel>
+        <!-- Main Title // -->
+
+        <!-- // "To-Do" Column -->
+        <StackPanel Style="{StaticResource ToDoColumnStyle}">
+            <TextBlock Name="ToDoTitle" Style="{StaticResource ToDoTitleStyle}"></TextBlock>
+            <ListBox Name="ToDoColumn" Style="{StaticResource ToDoItemsStyle}" ItemsSource="{StaticResource ToDoItems}"></ListBox>
+        </StackPanel>
+        <!-- "To-Do" Column // -->
+
+        <!-- // "In Progress" Column -->
+        <StackPanel Style="{StaticResource InProgressColumnStyle}">
+            <TextBlock Name="InProgressTitle" Style="{StaticResource InProgressTitleStyle}"></TextBlock>
+            <ListBox Name="InProgressColumn" Style="{StaticResource InProgressItemsStyle}" ItemsSource="{StaticResource InProgressItems}"></ListBox>
+        </StackPanel>
+        <!-- "In Progress" Column // -->
+
+        <!-- // "Done" Column -->
+        <StackPanel Style="{StaticResource DoneColumnStyle}">
+            <TextBlock Name="DoneTitle" Style="{StaticResource DoneTitleStyle}"></TextBlock>
+            <ListBox Name="DoneColumn" Style="{StaticResource DoneItemsStyle}" ItemsSource="{StaticResource DoneItems}"></ListBox>
+        </StackPanel>
+        <!-- "Done" Column // -->
+    </Grid>
+</Page>
