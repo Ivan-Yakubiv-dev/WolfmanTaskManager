@@ -10,11 +10,7 @@
       d:DesignHeight="500" d:DesignWidth="800">
 
     <Page.Resources>
-        <!-- // Tabs Styles -->
-        <Style TargetType="StackPanel" x:Key="NavigationPanelStyle">
-            <Setter Property="Grid.Row" Value="0"></Setter>
-            <Setter Property="Grid.ColumnSpan" Value="3"></Setter>
-        </Style>
+        <!-- // Navigation panel Styles -->
         <Style TargetType="TextBlock" x:Key="MainTitleStyle">
             <Setter Property="Padding" Value="20 5"></Setter>
             <Setter Property="Background" Value="#2E0504"></Setter>
@@ -22,15 +18,14 @@
             <Setter Property="FontSize" Value="50"></Setter>
             <Setter Property="Text" Value="Task List"></Setter>
         </Style>
-        <!-- Tabs Styles // -->
-        
+        <!-- Navigation panel Styles // -->
+
         <!-- // "To-Do" column Styles -->
-        <Style TargetType="StackPanel" x:Key="ToDoColumnStyle">
-            <Setter Property="Grid.Row" Value="1"></Setter>
-            <Setter Property="Grid.Column" Value="0"></Setter>
+        <Style TargetType="DockPanel" x:Key="ToDoColumnStyle">
             <Setter Property="Background" Value="#2E174E"></Setter>
         </Style>
         <Style TargetType="TextBlock" x:Key="ToDoTitleStyle">
+            <Setter Property="DockPanel.Dock" Value="Top"></Setter>
             <Setter Property="TextAlignment" Value="Center"></Setter>
             <Setter Property="FontSize" Value="35"></Setter>
             <Setter Property="Background" Value="#1B0933"></Setter>
@@ -40,17 +35,17 @@
         <Style TargetType="ListBox" x:Key="ToDoItemsStyle">
             <Setter Property="Background" Value="#2E174E"></Setter>
             <Setter Property="Foreground" Value="#AB89DB"></Setter>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
             <Setter Property="FontSize" Value="20"></Setter>
         </Style>
         <!-- "To-Do" column Styles // -->
 
         <!-- // "In Progress" column Styles -->
-        <Style TargetType="StackPanel" x:Key="InProgressColumnStyle">
-            <Setter Property="Grid.Row" Value="1"></Setter>
-            <Setter Property="Grid.Column" Value="1"></Setter>
+        <Style TargetType="DockPanel" x:Key="InProgressColumnStyle">
             <Setter Property="Background" Value="#674B22"></Setter>
         </Style>
         <Style TargetType="TextBlock" x:Key="InProgressTitleStyle">
+            <Setter Property="DockPanel.Dock" Value="Top"></Setter>
             <Setter Property="TextAlignment" Value="Center"></Setter>
             <Setter Property="FontSize" Value="35"></Setter>
             <Setter Property="Background" Value="#543811"></Setter>
@@ -60,17 +55,17 @@
         <Style TargetType="ListBox" x:Key="InProgressItemsStyle">
             <Setter Property="Background" Value="#674B22"></Setter>
             <Setter Property="Foreground" Value="#E1CAA7"></Setter>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
             <Setter Property="FontSize" Value="20"></Setter>
         </Style>
         <!-- "In Progress" column Styles // -->
 
         <!-- // "Done" column Styles -->
-        <Style TargetType="StackPanel" x:Key="DoneColumnStyle">
-            <Setter Property="Grid.Row" Value="1"></Setter>
-            <Setter Property="Grid.Column" Value="2"></Setter>
+        <Style TargetType="DockPanel" x:Key="DoneColumnStyle">
             <Setter Property="Background" Value="#296F2E"></Setter>
         </Style>
         <Style TargetType="TextBlock" x:Key="DoneTitleStyle">
+            <Setter Property="DockPanel.Dock" Value="Top"></Setter>
             <Setter Property="TextAlignment" Value="Center"></Setter>
             <Setter Property="FontSize" Value="35"></Setter>
             <Setter Property="Background" Value="#125317"></Setter>
@@ -80,19 +75,34 @@
         <Style TargetType="ListBox" x:Key="DoneItemsStyle">
             <Setter Property="Background" Value="#296F2E"></Setter>
             <Setter Property="Foreground" Value="#B4E3B7"></Setter>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
             <Setter Property="FontSize" Value="20"></Setter>
         </Style>
         <!-- "Done" column Styles // -->
+        
+        <!-- // "Task" blocks Styles -->
+        <Style TargetType="Border" x:Key="ItemBorderStyle">
+            <!--<Setter Property="HorizontalAlignment" Value="Stretch"></Setter>-->
+            <!--<Setter Property="VerticalAlignment" Value="Stretch"></Setter>-->
+            <!--<Setter Property="Width" Value=""></Setter>-->
+            <Setter Property="BorderThickness" Value="1.5"></Setter>
+            <Setter Property="BorderBrush" Value="#000"></Setter>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="ItemBlockStyle">
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+        <!-- "Task" blocks Styles // -->
 
         <!-- // "Task" blocks Data -->
         <x:Array x:Key="ToDoItems" Type="sys:String">
-            <sys:String>Task #1</sys:String>
-            <sys:String>Task #2</sys:String>
-            <sys:String>Task #3</sys:String>
+            <sys:String>Task #dsfffffffffffffffffffff8oeyoyowafhu1</sys:String>
+            <sys:String>Tff8oeyoyowff8oeyoyowask #2</sys:String>
+            <sys:String>Tasdsvvk #3</sys:String>
             <sys:String>Task #4</sys:String>
         </x:Array>
         <x:Array x:Key="InProgressItems" Type="sys:String">
-            <sys:String>Task #1</sys:String>
+            <sys:String>Task                        ddsdsefef #1</sys:String>
             <sys:String>Task #2</sys:String>
         </x:Array>
         <x:Array x:Key="DoneItems" Type="sys:String">
@@ -103,45 +113,60 @@
         <!-- "Task" blocks Data // -->
     </Page.Resources>
 
-    <Grid>
-        <!-- // Rows/Columns Configuration -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <!-- Rows/Columns Configuration // -->
-
+    <DockPanel>
         <!-- // Main Title -->
-        <StackPanel Style="{StaticResource NavigationPanelStyle}">
+        <StackPanel DockPanel.Dock="Top">
             <TextBlock Name="MainTitle" Style="{StaticResource MainTitleStyle}"></TextBlock>
         </StackPanel>
         <!-- Main Title // -->
 
-        <!-- // "To-Do" Column -->
-        <StackPanel Style="{StaticResource ToDoColumnStyle}">
-            <TextBlock Name="ToDoTitle" Style="{StaticResource ToDoTitleStyle}"></TextBlock>
-            <ListBox Name="ToDoColumn" Style="{StaticResource ToDoItemsStyle}" ItemsSource="{StaticResource ToDoItems}"></ListBox>
-        </StackPanel>
-        <!-- "To-Do" Column // -->
+        <!-- // Status Columns -->
+        <UniformGrid Columns="3">
+            <!-- // "To-Do" Column -->
+            <DockPanel Style="{StaticResource ToDoColumnStyle}">
+                <TextBlock Name="ToDoTitle" Style="{StaticResource ToDoTitleStyle}"></TextBlock>
+                <ListBox Name="ToDoColumn" Style="{StaticResource ToDoItemsStyle}" ItemsSource="{StaticResource ToDoItems}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource ItemBorderStyle}">
+                                <TextBlock Text="{Binding}" Style="{StaticResource ItemBlockStyle}"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+            <!-- "To-Do" Column // -->
 
-        <!-- // "In Progress" Column -->
-        <StackPanel Style="{StaticResource InProgressColumnStyle}">
-            <TextBlock Name="InProgressTitle" Style="{StaticResource InProgressTitleStyle}"></TextBlock>
-            <ListBox Name="InProgressColumn" Style="{StaticResource InProgressItemsStyle}" ItemsSource="{StaticResource InProgressItems}"></ListBox>
-        </StackPanel>
-        <!-- "In Progress" Column // -->
+            <!-- // "In Progress" Column -->
+            <DockPanel Style="{StaticResource InProgressColumnStyle}">
+                <TextBlock Name="InProgressTitle" Style="{StaticResource InProgressTitleStyle}"></TextBlock>
+                <ListBox Name="InProgressColumn" Style="{StaticResource InProgressItemsStyle}" ItemsSource="{StaticResource InProgressItems}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource ItemBorderStyle}">
+                                <TextBlock Text="{Binding}" Style="{StaticResource ItemBlockStyle}"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+            <!-- "In Progress" Column // -->
 
-        <!-- // "Done" Column -->
-        <StackPanel Style="{StaticResource DoneColumnStyle}">
-            <TextBlock Name="DoneTitle" Style="{StaticResource DoneTitleStyle}"></TextBlock>
-            <ListBox Name="DoneColumn" Style="{StaticResource DoneItemsStyle}" ItemsSource="{StaticResource DoneItems}"></ListBox>
-        </StackPanel>
-        <!-- "Done" Column // -->
-    </Grid>
+            <!-- // "Done" Column -->
+            <DockPanel Style="{StaticResource DoneColumnStyle}">
+                <TextBlock Name="DoneTitle" Style="{StaticResource DoneTitleStyle}"></TextBlock>
+                <ListBox Name="DoneColumn" Style="{StaticResource DoneItemsStyle}" ItemsSource="{StaticResource DoneItems}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource ItemBorderStyle}">
+                                <TextBlock Text="{Binding}" Style="{StaticResource ItemBlockStyle}"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </DockPanel>
+            <!-- "Done" Column // -->
+        </UniformGrid>
+        <!-- Status Columns // -->
+    </DockPanel>
 </Page>
